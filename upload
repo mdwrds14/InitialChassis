@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+python version_inc.py
+platformio run -t upload
