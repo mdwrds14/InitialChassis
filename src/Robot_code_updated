@@ -1,0 +1,123 @@
+//
+// Created by Michael and Jarrett on 7/3/19.
+//
+
+
+#include <Arduino.h>
+
+#define VERSION_NUMBER 19
+
+
+#define DIRB1 25 //pin layout
+#define DIRA1 23
+#define DIRB2 24
+#define DIRA2 22
+#define PWMA 9
+#define PWMB 3
+
+//uint8_t x = 0;
+
+    int x = 190; // controls speed of motor
+    
+    void forward (){
+    analogWrite(PWMA, x);
+    Serial.print(":speedA ");
+    Serial.println(x);
+    analogWrite(PWMB, x);
+    Serial.print(":speedB ");
+    Serial.println(x);}
+
+    void brake () {
+    analogWrite(PWMA, 0);
+    Serial.print(":speedA ");
+    Serial.println();
+    analogWrite(PWMB, 0);
+    Serial.print(":speedB ");
+    Serial.println(); 
+    }
+
+    void back (){ // doesn't work  
+    analogWrite(PWMA, x);
+    Serial.print(":speedA ");
+    Serial.println();
+    analogWrite(PWMB, x);
+    Serial.print(":speedB ");
+    Serial.println();
+    }
+
+    void right () {
+    analogWrite(PWMA, x);
+    Serial.print(":speedA ");
+    Serial.println();
+    analogWrite(PWMB, x/2);
+    Serial.print(":speedB ");
+    Serial.println();
+    }
+
+    void left() {
+    analogWrite(PWMA, x/2);
+    Serial.print(":speedA ");
+    Serial.println();
+    analogWrite(PWMB, x);
+    Serial.print(":speedB ");
+    Serial.println();
+    }
+void setup() {
+    pinMode(13, OUTPUT);
+
+    for (int i = 0; i < 10; i++) {
+        digitalWrite(13, HIGH);
+        delay(50);
+        digitalWrite(13, LOW);
+        delay(50); // start up delay time.
+    }
+
+    Serial.begin(115200);
+    Serial.print(":version-num \"");
+    Serial.print(VERSION_NUMBER);
+    Serial.println("\"");
+
+
+    pinMode(DIRB1, OUTPUT);
+    pinMode(DIRB2, OUTPUT);
+    pinMode(DIRA1, OUTPUT);
+    pinMode(DIRA2, OUTPUT);
+    pinMode(PWMA, OUTPUT);
+    pinMode(PWMB, OUTPUT);
+    
+    digitalWrite(DIRB1, HIGH);
+    digitalWrite(DIRB2, LOW);
+    digitalWrite(DIRA1, LOW);
+    digitalWrite(DIRA2, HIGH);
+
+    
+}
+
+void loop() {
+    delay(500); // duration until next cycle.
+//    digitalWrite(13, HIGH);
+//    delay(750);
+//    Serial.println(":led-on false");
+//    digitalWrite(13, LOW);
+//    delay(250);
+//    Serial.println(":led-on true");
+
+//brake();
+//delay(500);
+//forward();
+//delay(500);
+//brake();
+//delay(500);
+//right();
+//delay(500);
+//brake();
+//delay(500);
+//left();
+//delay(500);
+//brake();
+//delay(1000);
+back();
+delay(500);
+brake();
+delay(500);
+}
